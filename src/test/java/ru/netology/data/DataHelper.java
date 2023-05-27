@@ -15,7 +15,7 @@ public class DataHelper {
     }
 
     public static CardInfo getDeclinedCard() {
-        return new CardInfo("4444444444444442", "08", "23", "Dmitry Kurtsev", "888");
+        return new CardInfo("4444444444444442", "09", "24", "Dmitry Kurtsev", "777");
     }
 
     public static CardInfo getEmptyCard() {
