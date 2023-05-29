@@ -52,6 +52,7 @@ public class OrderCardPageTest {
         assertEquals("DECLINED", SQLHelper.getPaymentStatus());
 
     }
+
     @Test
     void buyNegativeAllFieldEmpty() {
         startPage.orderCardPage();
@@ -62,6 +63,7 @@ public class OrderCardPageTest {
         assertEquals("", SQLHelper.getOrderCount());
 
     }
+
     @Test
     void buyNegativeNumberCard15Symbols() {
         startPage.orderCardPage();
@@ -71,6 +73,7 @@ public class OrderCardPageTest {
         orderCardPage.waitNotificationWrongFormat();
         assertEquals("", SQLHelper.getOrderCount());
     }
+
     @Test
     void buyNegativeCardNotInDatabase() {
         startPage.orderCardPage();
@@ -80,6 +83,7 @@ public class OrderCardPageTest {
         orderCardPage.waitNotificationFailure();
         assertEquals("", SQLHelper.getOrderCount());
     }
+
     @Test
     void buyNegativeMonth1Symbol() {
         startPage.orderCardPage();
@@ -89,6 +93,7 @@ public class OrderCardPageTest {
         orderCardPage.waitNotificationWrongFormat();
         assertEquals("", SQLHelper.getOrderCount());
     }
+
     @Test
     void buyNegativeMonthOver12() {
         startPage.orderCardPage();
@@ -98,6 +103,7 @@ public class OrderCardPageTest {
         orderCardPage.waitNotificationExpirationDateError();
         assertEquals("", SQLHelper.getOrderCount());
     }
+
     @Test
     void buyNegativeMonth00ThisYear() {
         startPage.orderCardPage();
@@ -105,6 +111,106 @@ public class OrderCardPageTest {
         var orderCardPage = new OrderCardPage();
         orderCardPage.insertCardData(cardInfo);
         orderCardPage.waitNotificationExpirationDateError();
-        assertEquals("", "");
+        assertEquals("0", SQLHelper.getOrderCount());
+    }
+
+    @Test
+    void buyNegativeYear00() {
+        startPage.orderCardPage();
+        var cardInfo = DataHelper.getCardYear00();
+        var orderCardPage = new OrderCardPage();
+        orderCardPage.insertCardData(cardInfo);
+        orderCardPage.waitNotificationExpiredError();
+        assertEquals("0", SQLHelper.getOrderCount());
+    }
+
+    @Test
+    void buyNegativeYear1Symbol() {
+        startPage.orderCardPage();
+        var cardInfo = DataHelper.getCardYear1Symbol();
+        var orderCardPage = new OrderCardPage();
+        orderCardPage.insertCardData(cardInfo);
+        orderCardPage.waitNotificationWrongFormat();
+        assertEquals("0", SQLHelper.getOrderCount());
+    }
+
+    @Test
+    void buyNegativeYearUnderThisYear() {
+        startPage.orderCardPage();
+        var cardInfo = DataHelper.getCardYearUnderThisYear();
+        var orderCardPage = new OrderCardPage();
+        orderCardPage.insertCardData(cardInfo);
+        orderCardPage.waitNotificationExpiredError();
+        assertEquals("0", SQLHelper.getOrderCount());
+    }
+
+    @Test
+    void buyNegativeYearOverThisYearOn6() {
+        startPage.orderCardPage();
+        var cardInfo = DataHelper.getCardYearOverThisYearOn6();
+        var orderCardPage = new OrderCardPage();
+        orderCardPage.insertCardData(cardInfo);
+        orderCardPage.waitNotificationExpirationDateError();
+        assertEquals("0", SQLHelper.getOrderCount());
+    }
+
+    @Test
+    void buyNegativeCvv1Symbol() {
+        startPage.orderCardPage();
+        var cardInfo = DataHelper.getCardCvv1Symbol();
+        var orderCardPage = new OrderCardPage();
+        orderCardPage.insertCardData(cardInfo);
+        orderCardPage.waitNotificationWrongFormat();
+        assertEquals("0", SQLHelper.getOrderCount());
+    }
+
+    @Test
+    void buyNegativeCvv2Symbols() {
+        startPage.orderCardPage();
+        var cardInfo = DataHelper.getCardCvv2Symbols();
+        var orderCardPage = new OrderCardPage();
+        orderCardPage.insertCardData(cardInfo);
+        orderCardPage.waitNotificationWrongFormat();
+        assertEquals("0", SQLHelper.getOrderCount());
+    }
+
+    @Test
+    void buyNegativeOwner1Word() {
+        startPage.orderCardPage();
+        var cardInfo = DataHelper.getCardHolder1Word();
+        var orderCardPage = new OrderCardPage();
+        orderCardPage.insertCardData(cardInfo);
+        orderCardPage.waitNotificationWrongFormat();
+        assertEquals("0", SQLHelper.getOrderCount());
+    }
+
+    @Test
+    void buyNegativeOwnerCirillic() {
+        startPage.orderCardPage();
+        var cardInfo = DataHelper.getCardHolderCirillic();
+        var orderCardPage = new OrderCardPage();
+        orderCardPage.insertCardData(cardInfo);
+        orderCardPage.waitNotificationWrongFormat();
+        assertEquals("0", SQLHelper.getOrderCount());
+    }
+
+    @Test
+    void buyNegativeOwnerNumeric() {
+        startPage.orderCardPage();
+        var cardInfo = DataHelper.getCardHolderNumeric();
+        var orderCardPage = new OrderCardPage();
+        orderCardPage.insertCardData(cardInfo);
+        orderCardPage.waitNotificationWrongFormat();
+        assertEquals("0", SQLHelper.getOrderCount());
+    }
+
+    @Test
+    void buyNegativeOwnerSpecialSymbols() {
+        startPage.orderCardPage();
+        var cardInfo = DataHelper.getCardSpecialSymbols();
+        var orderCardPage = new OrderCardPage();
+        orderCardPage.insertCardData(cardInfo);
+        orderCardPage.waitNotificationWrongFormat();
+        assertEquals("0", SQLHelper.getOrderCount());
     }
 }
