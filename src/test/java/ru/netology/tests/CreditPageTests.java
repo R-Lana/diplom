@@ -3,7 +3,6 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import ru.netology.data.DataHelper;
 import ru.netology.data.SQLHelper;
-import ru.netology.pages.OrderCardPage;
 import ru.netology.pages.StartPage;
 import ru.netology.pages.CreditPage;
 import com.codeborne.selenide.logevents.SelenideLogger;
@@ -30,6 +29,7 @@ public class CreditPageTests {
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
     }
+
     @Test
     void creditPositiveAllFieldValidApproved() {
         startPage.creditPage();
@@ -57,6 +57,7 @@ public class CreditPageTests {
         var creditPage = new CreditPage();
         creditPage.insertCardData(cardInfo);
         creditPage.waitNotificationWrongFormat4Fields();
+
         assertEquals("0", SQLHelper.getOrderCount());
 
     }

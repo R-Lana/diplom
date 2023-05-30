@@ -60,7 +60,7 @@ public class OrderCardPageTest {
         var orderCardPage = new OrderCardPage();
         orderCardPage.insertCardData(cardInfo);
         orderCardPage.waitNotificationWrongFormat4Fields();
-        assertEquals("", SQLHelper.getOrderCount());
+        assertEquals("0", SQLHelper.getOrderCount());
 
     }
 
@@ -71,7 +71,7 @@ public class OrderCardPageTest {
         var orderCardPage = new OrderCardPage();
         orderCardPage.insertCardData(cardInfo);
         orderCardPage.waitNotificationWrongFormat();
-        assertEquals("", SQLHelper.getOrderCount());
+        assertEquals("0", SQLHelper.getOrderCount());
     }
 
     @Test
@@ -81,7 +81,7 @@ public class OrderCardPageTest {
         var orderCardPage = new OrderCardPage();
         orderCardPage.insertCardData(cardInfo);
         orderCardPage.waitNotificationFailure();
-        assertEquals("", SQLHelper.getOrderCount());
+        assertEquals("0", SQLHelper.getOrderCount());
     }
 
     @Test
@@ -91,7 +91,7 @@ public class OrderCardPageTest {
         var orderCardPage = new OrderCardPage();
         orderCardPage.insertCardData(cardInfo);
         orderCardPage.waitNotificationWrongFormat();
-        assertEquals("", SQLHelper.getOrderCount());
+        assertEquals("0", SQLHelper.getOrderCount());
     }
 
     @Test
@@ -101,7 +101,7 @@ public class OrderCardPageTest {
         var orderCardPage = new OrderCardPage();
         orderCardPage.insertCardData(cardInfo);
         orderCardPage.waitNotificationExpirationDateError();
-        assertEquals("", SQLHelper.getOrderCount());
+        assertEquals("0", SQLHelper.getOrderCount());
     }
 
     @Test
