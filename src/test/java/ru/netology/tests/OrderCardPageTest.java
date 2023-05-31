@@ -4,6 +4,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import ru.netology.data.DataHelper;
 import ru.netology.data.SQLHelper;
+import ru.netology.pages.CreditPage;
 import ru.netology.pages.OrderCardPage;
 import ru.netology.pages.StartPage;
 import com.codeborne.selenide.logevents.SelenideLogger;
@@ -108,6 +109,15 @@ public class OrderCardPageTest {
     void buyNegativeMonth00ThisYear() {
         startPage.orderCardPage();
         var cardInfo = DataHelper.getCardMonth00ThisYear();
+        var orderCardPage = new OrderCardPage();
+        orderCardPage.insertCardData(cardInfo);
+        orderCardPage.waitNotificationExpirationDateError();
+        assertEquals("0", SQLHelper.getOrderCount());
+    }
+    @Test
+    void creditNegativeMonth00OverThisYear() {
+        startPage.orderCardPage();
+        var cardInfo = DataHelper.getCardMonth00OverThisYear();
         var orderCardPage = new OrderCardPage();
         orderCardPage.insertCardData(cardInfo);
         orderCardPage.waitNotificationExpirationDateError();
